@@ -6,7 +6,7 @@
   * @delim: Delimiter.
   * Return: the position in the string.
   */
-int _strcspn(char *s, char *delim)
+int _strcspn(char *s, const char *delim)
 {
 	int counter = 0, i;
 
@@ -30,7 +30,7 @@ int _strcspn(char *s, char *delim)
   * Return: the position when delim is different to the string.
   */
 
-int _strspn(char *s, char *delim)
+int _strspn(char *s, const char *delim)
 {
 	int i;
 
@@ -38,7 +38,6 @@ int _strspn(char *s, char *delim)
 	{
 		;
 	}
-	i++;
 	return (i);
 }
 /**
