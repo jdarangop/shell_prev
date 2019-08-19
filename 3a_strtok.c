@@ -1,5 +1,11 @@
 #include "shell.h"
 
+/**
+  * _strcspn - Find the positing where the delim is found in the string.
+  * @s: String.
+  * @delim: Delimiter.
+  * Return: the position in the string.
+  */
 int _strcspn(char *s, char *delim)
 {
 	int counter = 0, i;
@@ -17,6 +23,13 @@ int _strcspn(char *s, char *delim)
 	return (counter);
 }
 
+/**
+  * _strspn - Find the positing until the delim is equal to the string.
+  * @s: String.
+  * @delim: Delimiter.
+  * Return: the position when delim is different to the string.
+  */
+
 int _strspn(char *s, char *delim)
 {
 	int i;
@@ -28,17 +41,24 @@ int _strspn(char *s, char *delim)
 	i++;
 	return (i);
 }
-
-char *_strtok_r(char *s, const char *delim, char **save_ptr)
+/**
+  * _strtok_r - Find the first token in a string until the dilimiter
+  *             and save the rest of the string in save_str.
+  * @s: String.
+  * @delim: Delimiter.
+  * @save_str: The rest of the string.
+  * Return: First word tokenized.
+  */
+char *_strtok_r(char *s, const char *delim, char **save_str)
 {
 	char *end;
 
 	if (s == NULL)
-		s = *save_ptr;
+		s = *save_str;
 
 	if (*s == '\0')
 	{
-		*save_ptr = s;
+		*save_str = s;
 		return (NULL);
 	}
 
@@ -46,21 +66,27 @@ char *_strtok_r(char *s, const char *delim, char **save_ptr)
 
 	if (*s == '\0')
 	{
-		*save_ptr = s;
+		*save_str = s;
 		return (NULL);
 	}
 	end = s + _strcspn(s, delim);
 
 	if (*end == '\0')
 	{
-		*save_ptr = end;
+		*save_str = end;
 		return (s);
 	}
 
 	*end = '\0';
-	*save_ptr = end + 1;
+	*save_str = end + 1;
 	return (s);
 }
+/**
+  * _strtok - Tokenize a string in words separated by a delimiter.
+  * @s: String.
+  * @delim: Delimiter.
+  * Return: Word tekenized.
+  */
 
 char *_strtok(char *s, const char *delim)
 {
